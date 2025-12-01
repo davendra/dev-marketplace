@@ -1,0 +1,42 @@
+{
+  "name": "@go-bananas/claude-plugin",
+  "version": "1.0.0",
+  "description": "Claude Code skill for AI image generation with Go Bananas. Supports Google Gemini Flash/Pro models for image generation, editing, character consistency, product marketing, and style presets.",
+  "keywords": [
+    "claude-code",
+    "claude",
+    "plugin",
+    "skill",
+    "ai-images",
+    "image-generation",
+    "gemini",
+    "go-bananas",
+    "mcp"
+  ],
+  "author": {
+    "name": "Davendra Patel",
+    "email": "davendra@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davendra/go-bananas"
+  },
+  "homepage": "https://gobananasai.com",
+  "bugs": {
+    "url": "https://github.com/davendra/go-bananas/issues"
+  },
+  "files": [
+    ".claude-plugin",
+    "skills",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

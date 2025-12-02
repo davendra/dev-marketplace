@@ -17,6 +17,17 @@
       },
       "source": "./skills/go-bananas",
       "category": "development"
+    },
+    {
+      "name": "workflow-diagrams",
+      "description": "Transform Mermaid syntax or natural language into professional visual diagrams using Go Bananas Pro model",
+      "version": "1.0.0",
+      "author": {
+        "name": "Davendra Patel",
+        "email": "davendra@gmail.com"
+      },
+      "source": "./skills/workflow-diagrams",
+      "category": "development"
     }
   ]
 }

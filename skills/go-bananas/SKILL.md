@@ -1,171 +1,135 @@
 ---
 name: go-bananas
-description: This skill provides AI image generation with Google Gemini models. Use when the user asks to generate images, create AI artwork, edit photos, make characters consistent across scenes, create product marketing images, apply style presets, or generate infographics. Triggers on requests for AI images, photo generation, character design, product shots, marketing assets, multi-scene storytelling, Gemini Flash, Gemini Pro, or Go Bananas.
-version: 1.0.0
-license: MIT
+description: AI image generation using Go Bananas! MCP server or REST API. Supports Google Gemini Flash (Standard) and Pro models. Use for image generation, editing, character consistency, product marketing, style presets, infographics, and usage analytics. Triggers on requests for AI images, photo generation, character design, product shots, marketing assets, or multi-scene storytelling.
 ---
 
-# Go Bananas Image Generation
+# Go Bananas! Image Generation
 
-AI-powered image generation with Google Gemini models via REST API.
+AI-powered image generation with Google Gemini models, deployed on Cloudflare Workers.
 
-## Setup
+> **Character Consistency**: For comprehensive guidance on creating consistent characters across scenes, see the [Character Consistency Master Guide](../../../docs/guides/CHARACTER_CONSISTENCY_MASTERGUIDE.md).
 
-### 1. Get API Key
-Obtain from gobananasai.com. Format: `sk_live_xxx` or `sk_test_xxx`
+> **Product Marketing**: For comprehensive guidance on product marketing image generation, see the [Product Marketing Master Guide](../../../docs/guides/PRODUCT_MARKETING_MASTERGUIDE.md).
 
-### 2. Set Environment Variable
-```bash
-export GO_BANANAS_API_KEY=sk_live_your_key_here
+## Quick Start
+
+### Option 1: MCP Server (Recommended)
+If you have Go Bananas! MCP server configured, use the tools directly:
+
+```
+generate_image - Create new images from text prompts
+continue_editing - Edit the last generated image conversationally
+generate_with_character - Create scenes with saved characters
+generate_with_product - Marketing images with product references
 ```
 
-Or add to your shell profile (`~/.zshrc` or `~/.bashrc`).
+### Option 2: REST API
+If using HTTP endpoints:
 
-## Generating Images
-
-Use curl to call the REST API. Replace `$GO_BANANAS_API_KEY` with actual key if not set as env var.
-
-### Basic Generation
 ```bash
+# Generate image
 curl -X POST https://gobananasai.com/api/images \
-  -H "X-API-Key: $GO_BANANAS_API_KEY" \
+  -H "X-API-Key: sk_live_xxx" \
   -H "Content-Type: application/json" \
   -d '{"prompt": "A sunset over mountains", "aspect_ratio": "16:9"}'
 ```
 
-### With Options
-```bash
-curl -X POST https://gobananasai.com/api/images \
-  -H "X-API-Key: $GO_BANANAS_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "prompt": "A professional headshot",
-    "aspect_ratio": "portrait",
-    "n": 2,
-    "negative_prompt": "blurry, low quality",
-    "model_id": "gemini-pro-image"
-  }'
+## Models
+
+| Feature | Standard (Flash) | Pro |
+|---------|------------------|-----|
+| Resolution | 1K | 1K, 2K, 4K |
+| Reference images | 3 | 14 |
+| Text rendering | Basic | Advanced |
+| Web grounding | No | Yes |
+| Speed | Fast | Quality-optimized |
+
+**When to use:**
+- **Standard**: Rapid prototyping, high-volume, simple edits
+- **Pro**: Production assets, print materials, infographics, text-heavy content
+
+## Golden Rules of Prompting
+
+*From Google DeepMind's official Gemini Pro guide*
+
+| Rule | Description |
+|------|-------------|
+| **1. Edit, Don't Re-roll** | If 80% correct, use `continue_editing` instead of regenerating |
+| **2. Natural Language** | Write full sentences like briefing an artist, not tag soups |
+| **3. Materiality** | Describe textures: "brushed steel", "soft velvet", "crumpled paper" |
+| **4. Context** | Add "for whom": "for a luxury cookbook" changes everything |
+| **5. Identity Locking** | "Keep facial features exactly the same as Image 1" |
+
+**Bad**: `dog, park, 4k, realistic`
+**Good**: "A golden retriever playing fetch in a sunny park, captured in photorealistic detail"
+
+## Advanced Techniques
+
+| Technique | Description |
+|-----------|-------------|
+| **Negative Prompts** | Tell model what NOT to include: "no date stamp", "no text", "not rustic" |
+| **JSON Prompting** | Use structured JSON for complex scenes with precise control |
+| **Prompt Evolution** | Start simple, iterate: "fashion photo" → "high-end fashion" → "winter fashion, daring" |
+| **Upscaling** | Images as small as 150x150 → 4K with Pro model |
+| **Multi-Reference** | Use images for style, branding, colors, object placement |
+| **360 Turnaround** | Generate multiple angles from single reference |
+
+## Core Capabilities
+
+### 1. Image Generation
+Generate images with prompts, style presets, and reference images.
+
+### 2. Conversational Editing
+Edit images naturally: "add clouds", "make it brighter", "change to night scene"
+
+### 3. Character Consistency
+Save characters once, generate unlimited consistent scenes across sessions.
+
+### 4. Product Marketing
+Save product images, generate unlimited marketing scenes.
+
+### 5. Style Presets
+Save and reuse prompt templates for consistent branding.
+
+### 6. Pro Model Features (Advanced)
+- **Text & Infographics**: SOTA text rendering, data visualization
+- **Viral Thumbnails**: Identity + text + graphics in one pass
+- **Storyboarding**: Multi-scene sequential art with consistent characters
+- **Structural Control**: Sketches/wireframes to polished designs
+- **2D↔3D Translation**: Floor plans to renders, 2D art to 3D
+- **4K Textures**: Print-quality output for wallpapers and materials
+
+## Reference Documentation
+
+For detailed information, see:
+- **mcp-tools.md** - All 27 MCP tools with parameters and examples
+- **rest-api.md** - REST endpoints with curl examples
+- **prompt-patterns.md** - Best practices for writing effective prompts
+- **models.md** - Detailed Flash vs Pro feature comparison
+- **use-cases.md** - Templates for common scenarios (marketing, infographics, characters)
+
+## Example Workflows
+
+### Creating a Character Campaign
+```
+1. generate_image - Create initial character design
+2. create_character - Save character with reference images
+3. generate_with_character - Generate multiple scenes
 ```
 
-### Response
-```json
-{
-  "images": [{
-    "id": 42,
-    "url": "https://pub-xxx.r2.dev/tenant/image.png",
-    "width": 1024,
-    "height": 1024
-  }],
-  "session_id": "session-abc123"
-}
+### Product Marketing
+```
+1. create_product_reference - Save product from URL
+2. generate_with_product - Generate marketing scenes
+3. continue_editing - Refine results
 ```
 
-## Common Operations
-
-### Generate Image
-```bash
-curl -X POST https://gobananasai.com/api/images \
-  -H "X-API-Key: $GO_BANANAS_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"prompt": "YOUR PROMPT HERE"}'
+### Consistent Branding
+```
+1. create_style_preset - Save brand style
+2. generate_image with style_preset_name - Apply to all generations
 ```
 
-### List Images
-```bash
-curl https://gobananasai.com/api/images \
-  -H "X-API-Key: $GO_BANANAS_API_KEY"
-```
+## Related Skills
 
-### Get Image Info
-```bash
-curl https://gobananasai.com/api/images/42 \
-  -H "X-API-Key: $GO_BANANAS_API_KEY"
-```
-
-### Check Usage
-```bash
-curl https://gobananasai.com/api/usage \
-  -H "X-API-Key: $GO_BANANAS_API_KEY"
-```
-
-### Create Character (for consistent multi-scene)
-```bash
-curl -X POST https://gobananasai.com/api/characters \
-  -H "X-API-Key: $GO_BANANAS_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "character_name": "Hero Henry",
-    "base_prompt": "10-year-old boy with brown hair, blue eyes, red cape"
-  }'
-```
-
-### Create Style Preset
-```bash
-curl -X POST https://gobananasai.com/api/style-presets \
-  -H "X-API-Key: $GO_BANANAS_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Watercolor",
-    "prompt": "watercolor painting style,"
-  }'
-```
-
-## Request Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| prompt | string | Yes | Image description (max 8192 chars) |
-| n | integer | No | Number of images (1-4, default 1) |
-| aspect_ratio | string | No | square, portrait, landscape, 16:9, 9:16, 4:3, 3:4 |
-| negative_prompt | string | No | What to avoid |
-| model_id | string | No | gemini-flash-image (default) or gemini-pro-image |
-| style_preset_name | string | No | Apply saved style preset |
-
-## Model Selection
-
-| Need | Use | Why |
-|------|-----|-----|
-| Quick iteration | Standard (default) | Fast 3-5 sec, 1K resolution |
-| Production assets | Pro | Up to 4K, better quality |
-| Text in images | Pro | Advanced text rendering |
-| Infographics | Pro | Data visualization |
-
-To use Pro model, add `"model_id": "gemini-pro-image"` to request.
-
-## Critical Rules
-
-### Always Do
-- Use descriptive prompts with style, lighting, composition details
-- Specify `negative_prompt` to prevent unwanted elements
-- Use Pro model for text-heavy content or 4K resolution
-- Check quota with `/api/usage` before batch operations
-
-### Never Do
-- Generate more than 4 images per call (API limit)
-- Use Standard model for infographics or precise text
-- Expose API keys in visible output
-
-## Error Codes
-
-| Code | Meaning |
-|------|---------|
-| 400 | Bad Request - Invalid parameters |
-| 401 | Unauthorized - Invalid API key |
-| 429 | Rate limit exceeded (60 req/min default) |
-| 500 | Server error |
-
-## Reference Files
-
-Load only when needed:
-
-| Need | Load |
-|------|------|
-| All endpoints | `rest-api.md` |
-| Flash vs Pro details | `models.md` |
-| Prompt techniques | `prompt-patterns.md` |
-| Workflow templates | `use-cases.md` |
-
-## Official Documentation
-
-- Platform: https://gobananasai.com
-- API Docs: https://gobananasai.com/docs
+- **[Workflow Diagrams](../workflow-diagrams/SKILL.md)** - Transform Mermaid syntax or natural language into professional flowcharts, infographics, timelines, and org charts using Pro model

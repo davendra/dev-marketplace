@@ -9,7 +9,7 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-  [![Skills Available](https://img.shields.io/badge/Skills-1-blueviolet)](#available-skills)
+  [![Skills Available](https://img.shields.io/badge/Skills-2-blueviolet)](#available-skills)
   [![Plugin Compatible](https://img.shields.io/badge/Plugin-Compatible-success)](#installation)
   [![REST API](https://img.shields.io/badge/REST-API-orange)](#go-bananas-features)
 
@@ -313,6 +313,26 @@ skills/
 | 401 | Unauthorized - invalid or missing API key |
 | 429 | Rate limit exceeded - wait and retry |
 | 500 | Server error - try again later |
+
+---
+
+## Changelog
+
+### v1.0.1 (2025-12-03)
+
+**Skills Synced from Source**
+- Updated `skills/go-bananas/models.md` - Expanded model comparison and capabilities
+- Updated `skills/go-bananas/prompt-patterns.md` - Additional prompting techniques
+- Updated `skills/go-bananas/rest-api.md` - Updated API documentation
+- Updated `skills/go-bananas/use-cases.md` - New workflow examples
+
+### v1.0.0 (2025-12-02)
+
+**Initial Release**
+- Added Go Bananas skill - AI image generation with Google Gemini
+- Added Workflow Diagrams skill - Mermaid to visual diagram conversion
+- Marketplace structure with plugin.json manifest
+- NPM distribution support with postinstall script
 
 ---
 

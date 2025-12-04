@@ -1,6 +1,6 @@
 {
   "name": "dev-marketplace",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Claude Code skills and plugins marketplace",
   "owner": {
     "name": "Davendra Patel",
@@ -10,7 +10,7 @@
     {
       "name": "go-bananas",
       "description": "AI image generation with Google Gemini models via REST API",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Davendra Patel",
         "email": "davendra@gmail.com"
@@ -23,7 +23,7 @@
     {
       "name": "workflow-diagrams",
       "description": "Transform Mermaid syntax or natural language into professional visual diagrams using Go Bananas Pro model",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Davendra Patel",
         "email": "davendra@gmail.com"

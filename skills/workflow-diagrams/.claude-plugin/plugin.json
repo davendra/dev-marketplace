@@ -1,6 +1,6 @@
 {
   "name": "workflow-diagrams",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Transform Mermaid syntax or natural language into professional visual diagrams, flowcharts, infographics, and timelines using Go Bananas Pro model.",
   "license": "MIT",
   "author": {

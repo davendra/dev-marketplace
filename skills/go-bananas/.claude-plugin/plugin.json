@@ -1,6 +1,6 @@
 {
   "name": "go-bananas",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI image generation skills using Go Bananas MCP server or REST API. Supports Google Gemini Flash/Pro models for image generation, editing, character consistency, product marketing, style presets, and usage analytics.",
   "license": "MIT",
   "author": {
